@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADSC Club</title>
+
+<style>
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+
+body{
+  scroll-behavior:smooth;
+  background:#0f172a;
+  color:white;
+}
+
+/* HEADER */
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 30px;
+  background:rgba(0,0,0,0.6);
+  position:fixed;
+  width:100%;
+  backdrop-filter: blur(10px);
+  z-index:1000;
+}
+
+nav a{
+  margin:0 12px;
+  color:white;
+  text-decoration:none;
+  position:relative;
+}
+
+nav a::after{
+  content:"";
+  position:absolute;
+  bottom:-5px;
+  left:0;
+  width:0%;
+  height:2px;
+  background:#38bdf8;
+  transition:0.3s;
+}
+
+nav a:hover::after{
+  width:100%;
+}
+
+/* HERO */
+.hero{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(135deg,#0ea5e9,#9333ea);
+  text-align:center;
+}
+
+.hero h1{
+  font-size:3rem;
+  animation:fadeIn 1s ease-in-out;
+}
+
+.hero p{
+  margin-top:10px;
+  opacity:0.8;
+}
+
+.hero button{
+  margin-top:20px;
+  padding:12px 25px;
+  border:none;
+  background:black;
+  color:white;
+  border-radius:25px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.hero button:hover{
+  transform:scale(1.1);
+  background:white;
+  color:black;
+}
+
+/* SECTIONS */
+section{
+  padding:100px 20px;
+  text-align:center;
+}
+
+/* CARDS */
+.cards{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:20px;
+  margin-top:20px;
+}
+
+.card{
+  background:#1e293b;
+  padding:25px;
+  border-radius:15px;
+  width:220px;
+  transition:all 0.4s ease;
+  box-shadow:0 0 10px rgba(0,0,0,0.3);
+}
+
+.card:hover{
+  transform:translateY(-10px) scale(1.05);
+  background:#38bdf8;
+  color:black;
+}
+
+/* TEAM */
+.team img{
+  width:100px;
+  border-radius:50%;
+  margin-bottom:10px;
+}
+
+/* CONTACT */
+form input, form textarea{
+  display:block;
+  width:80%;
+  margin:10px auto;
+  padding:12px;
+  border:none;
+  border-radius:8px;
+}
+
+form button{
+  padding:12px 25px;
+  border:none;
+  background:#38bdf8;
+  color:black;
+  border-radius:25px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+form button:hover{
+  background:white;
+}
+
+/* FOOTER */
+footer{
+  background:black;
+  padding:15px;
+  text-align:center;
+}
+
+/* ANIMATION */
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(20px)}
+  to{opacity:1; transform:translateY(0)}
+}
+
+/* SCROLL ANIMATION */
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s;
+}
+
+.reveal.active{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .hero h1{font-size:2rem}
+  nav{display:none}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h2>ADSC Club</h2>
+<nav>
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#features">Features</a>
+<a href="#events">Events</a>
+<a href="#team">Team</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
+
+<section id="home" class="hero">
+<h1>ADSC Club</h1>
+<p>Code • Connect • Grow</p>
+<button onclick="scrollToSection('about')">Explore</button>
+</section>
+
+<section id="about" class="reveal">
+<h2>About Us</h2>
+<p>We help students improve coding skills, build network, and learn from seniors.</p>
+</section>
+
+<section id="features" class="reveal">
+<h2>Features</h2>
+<div class="cards">
+<div class="card">💻 Coding Practice</div>
+<div class="card">🤝 Networking</div>
+<div class="card">🎓 Mentorship</div>
+<div class="card">📚 Tutorials</div>
+</div>
+</section>
+
+<section id="events" class="reveal">
+<h2>Events</h2>
+<div class="cards">
+<div class="card">Hackathons</div>
+<div class="card">Workshops</div>
+<div class="card">Contests</div>
+</div>
+</section>
+
+<section id="team" class="team reveal">
+<h2>Our Seniors</h2>
+<div class="cards">
+<div class="card"><img src="https://via.placeholder.com/100"><p>Senior 1</p></div>
+<div class="card"><img src="https://via.placeholder.com/100"><p>Senior 2</p></div>
+<div class="card"><img src="https://via.placeholder.com/100"><p>Senior 3</p></div>
+</div>
+</section>
+
+<section id="contact" class="reveal">
+<h2>Contact Us</h2>
+<form onsubmit="return submitForm()">
+<input type="text" placeholder="Name" required>
+<input type="email" placeholder="Email" required>
+<textarea placeholder="Message"></textarea>
+<button type="submit">Send</button>
+</form>
+</section>
+
+<footer>
+<p>© 2026 ADSC Club</p>
+</footer>
+
+<script>
+function scrollToSection(id){
+ document.getElementById(id).scrollIntoView({behavior:'smooth'});
+}
+
+function submitForm(){
+ alert('Message sent successfully!');
+ return false;
+}
+
+// SCROLL ANIMATION
+window.addEventListener('scroll', reveal);
+
+function reveal(){
+ let reveals = document.querySelectorAll('.reveal');
+
+ for(let i=0;i<reveals.length;i++){
+  let windowHeight = window.innerHeight;
+  let elementTop = reveals[i].getBoundingClientRect().top;
+  let elementVisible = 100;
+
+  if(elementTop < windowHeight - elementVisible){
+    reveals[i].classList.add('active');
+  }
+ }
+}
+</script>
+
+</body>
+</html>
